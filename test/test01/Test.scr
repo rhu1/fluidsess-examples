@@ -1,0 +1,7 @@
+//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 Test.scr
+
+module Test;
+
+global protocol Proto1(role A, role B) {
+  1() from A to B;
+}
