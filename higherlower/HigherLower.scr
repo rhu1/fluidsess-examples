@@ -1,0 +1,55 @@
+//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 HigherLower.scr
+//$ ROLES="A B C" FILE=HigherLower.scr PROTOCOL=Mergeable ./gen-fsm.sh
+// -- manually edit Mergeable_C to have @"<x1:=0>", not x1
+//$ ROLES="A B C" FILE=HigherLower.scr PROTOCOL=Mergeable ./gen.sh
+
+module HigherLower;
+
+type <java> "..." from "..." as int;
+
+/* Original -- not mergeable */
+
+/*
+global protocol Orig(role A, role B, role C) {
+  num(x:int) from A to B;
+  do OrigAux(B, C); @'<x>'
+}
+
+aux global protocol OrigAux(role B, role C) @'<x1:=0>' {
+  guess(y:int) from C to B;
+  choice at B {
+    toohigh() from B to C; @'y>x1'
+    do OrigAux(B, C); @'<x1>'  // CHECKME: graph building when no recursion -- A?
+  } or {
+    win() from B to C;     @'y=x1'
+  } or {
+    toolow() from B to C;  @'y<x1'
+    do OrigAux(B, C); @'<x1>'
+  }
+}
+//*/
+
+
+/* Simple mergeable version */
+
+global protocol Mergeable(role A, role B, role C) {
+  num(x:int) from A to B;
+  do MergeableAux(A, B, C); @'<x>'
+}
+
+aux global protocol MergeableAux(role A, role B, role C) @'<x1:=0>' {
+  guess(y:int) from C to B;
+  choice at B {
+    toohigh() from B to C;     @'y>x1'
+    conthigh() from B to A;
+    do MergeableAux(A, B, C);  @'<x1>'
+  } or {
+    win() from B to C;         @'y=x1'
+    over() from B to A;
+  } or {
+    toolow() from B to C;      @'y<x1'
+    contlow() from B to A;
+    do MergeableAux(A, B, C);  @'<x1>'
+  }
+}
+
