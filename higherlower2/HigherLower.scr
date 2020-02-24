@@ -16,7 +16,7 @@ global protocol Proto1(role A, role B, role C) {
 }
 
 aux global protocol Proto1Aux(role A, role B, role C) @'<x1:=0, z1:=0>' {
-  guess(y:int) from C to B;  // FIXME: guesses even when 0 lives
+  guess(y:int) from C to B;  // FIXME: guesses even when 0 lives (z1) remaining
   choice at B {
     toohigh() from B to C;    @'y>x1'
     conthigh() from B to A;
