@@ -1,0 +1,11 @@
+
+digraph G {
+compound = true;
+"31" [ label="31:  <x1:=0, z:=50> True" ];
+"31" -> "33" [ label="B!guess(y: int){y=z}<>" ];
+"33" [ label="33:  <> True" ];
+"33" -> "31" [ label="B?toohigh(){(y > x1)}<x1, (z - 1)>" ];
+"33" -> "32" [ label="B?win(){(y = x1)}<>" ];
+"33" -> "31" [ label="B?toolow(){(y < x1)}<x1, (z + 1)>" ];
+"32" [ label="32:  <> True" ];
+}
