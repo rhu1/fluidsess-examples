@@ -23,10 +23,10 @@ let callbacks : callbacksB = {
 
   (*state21Onsend : (st: state21) -> ML (state21Choice st);*)
   state21Onsend = (fun st ->
-    (*let x1 = (Mkstate21?.x1 st) in
-    let y = (Mkstate21?.y st) in*)
-    if (Mkstate21?.y st) > (Mkstate21?.x1 st) then (Choice21toohigh ())
-    else if (Mkstate21?.y st) = (Mkstate21?.x1 st) then (Choice21win ())
+    let x1 = (Mkstate21?.x1 st) in
+    let y = (Mkstate21?.y st) in
+    if y > x1 then (Choice21toohigh ())
+    else if y = x1 then (Choice21win ())
     else (Choice21toolow ())
   );
 

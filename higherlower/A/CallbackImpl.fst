@@ -11,7 +11,7 @@ let print_int (i:int) =
   let i = string_of_int i in
   FStar.IO.print_string i
 
-let empty = fun _ -> ()
+let empty1 = fun _ -> ()
 
 let callbacks : callbacksA = {
   (* state5Onsendnum : (st: state5) -> ML (int); *)
@@ -24,13 +24,13 @@ let callbacks : callbacksA = {
   );
 
   (* state7Onreceiveconthigh : (st: state7) -> ML (unit); *)
-  state7Onreceiveconthigh = empty;
+  state7Onreceiveconthigh = empty1;
 
   (* state7Onreceivecontlow : (st: state7) -> ML (unit); *)
 
-  state7Onreceivecontlow = empty;
+  state7Onreceivecontlow = empty1;
 
   (* state7Onreceiveover : (st: state7) -> ML (unit); *)
-  state7Onreceiveover = empty;
+  state7Onreceiveover = empty1;
 }
 
