@@ -32,8 +32,7 @@ let callbacks : callbacksC = {
   (* state33Onreceivewin : (st: state33) -> ML (unit); *)
   state33Onreceivewin = (fun st -> 
     FStar.IO.print_string "Got it! ";
-    print_int (Mkstate33
-    ?.y st);
+    print_int (Mkstate33?.y st);
     FStar.IO.print_string "\n"
   );
 

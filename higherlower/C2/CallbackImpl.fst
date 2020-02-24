@@ -9,6 +9,8 @@ let print_int (i:int) =
   let i = string_of_int i in
   FStar.IO.print_string i
 
+(* refinement subtyping as scrib local proto subtyping? refinements and state vars *)
+
 let callbacks : callbacksC = {
   (* state31Onsendguess : (st: state31) -> ML (int); *)
   state31Onsendguess = (fun st ->

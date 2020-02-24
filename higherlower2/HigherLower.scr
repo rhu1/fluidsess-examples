@@ -1,0 +1,36 @@
+//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 HigherLower.scr
+//$ ROLES="A B C" FILE=HigherLower.scr PROTOCOL=Proto1 ./gen-fsm.sh
+//$ ROLES="A B C" FILE=HigherLower.scr PROTOCOL=Proto1 ./gen.sh
+
+module HigherLower;
+
+type <java> "..." from "..." as int;
+
+
+/* ... */
+
+global protocol Proto1(role A, role B, role C) {
+  num(x:int) from A to B;
+  limit(z:int) from A to B;
+  do Proto1Aux(A, B, C); @'<x, z>'
+}
+
+aux global protocol Proto1Aux(role A, role B, role C) @'<x1:=0, z1:=0>' {
+  guess(y:int) from C to B;  // FIXME: guesses even when 0 lives
+  choice at B {
+    toohigh() from B to C;    @'y>x1'
+    conthigh() from B to A;
+    do Proto1Aux(A, B, C);    @'<x1, z1-1>'
+  } or {
+    win() from B to C;        @'y=x1 && z1>0'
+    lose() from B to A;
+  } or {
+    lose() from B to C;       @'z1<=0'
+    win() from B to A;
+  } or {
+    toolow() from B to C;     @'y<x1'
+    contlow() from B to A;
+    do Proto1Aux(A, B, C);    @'<x1, z1-1>'
+  }
+}
+
