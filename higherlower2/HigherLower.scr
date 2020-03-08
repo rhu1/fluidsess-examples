@@ -1,4 +1,4 @@
-//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 HigherLower.scr
+//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -z3 -batch -fair HigherLower.scr
 //$ ROLES="A B C" FILE=HigherLower.scr PROTOCOL=Proto1 ./gen-fsm.sh
 //$ ROLES="A B C" FILE=HigherLower.scr PROTOCOL=Proto1 ./gen.sh
 
@@ -10,27 +10,28 @@ type <java> "..." from "..." as int;
 /* ... */
 
 global protocol Proto1(role A, role B, role C) {
-  num(x:int) from A to B;
-  limit(z:int) from A to B;
-  do Proto1Aux(A, B, C); @'<x, z>'
+  start(n:int) from A to B;  @'0<=n && n<100'
+  limit(t:int) from A to B;  @'t>0'
+  do Proto1Aux(A, B, C);     @'<n, t>'
 }
 
-aux global protocol Proto1Aux(role A, role B, role C) @'<x1:=0, z1:=0>' {
-  guess(y:int) from C to B;  // FIXME: guesses even when 0 lives (z1) remaining
+aux global protocol Proto1Aux(role A, role B, role C) @'<n1:B=0, t1:B=1> t1>0' {
+  guess(x:int) from C to B;
   choice at B {
-    toohigh() from B to C;    @'y>x1'
-    conthigh() from B to A;
-    do Proto1Aux(A, B, C);    @'<x1, z1-1>'
+    higher() from B to C;   @'n1>x && t1>1'
+    higher() from B to A;
+    do Proto1Aux(A, B, C);  @'<n1, t1-1>'
   } or {
-    win() from B to C;        @'y=x1 && z1>0'
+    win() from B to C;      @'n1=x'
     lose() from B to A;
   } or {
-    lose() from B to C;       @'z1<=0'
+    lose() from B to C;     @'(!(n1=x)) && t1=1'  // FIXME: ! precedence
+                          //@'((n1<x || n1>x) && t1=1)'
     win() from B to A;
   } or {
-    toolow() from B to C;     @'y<x1'
-    contlow() from B to A;
-    do Proto1Aux(A, B, C);    @'<x1, z1-1>'
+    lower() from B to C;    @'n1<x && t1>1'
+    lower() from B to A;
+    do Proto1Aux(A, B, C);  @'<n1, t1-1>'
   }
 }
 

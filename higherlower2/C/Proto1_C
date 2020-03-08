@@ -1,12 +1,13 @@
 
 digraph G {
 compound = true;
-"70" [ label="70:  <x1:=0, z1:=0> True" ];
-"70" -> "72" [ label="B!guess(y: int){True}<>" ];
-"72" [ label="72:  <> True" ];
-"72" -> "70" [ label="B?toohigh(){(y > x1)}<x1, (z1 - 1)>" ];
-"72" -> "71" [ label="B?win(){((y = x1) && (z1 > 0))}<>" ];
-"72" -> "71" [ label="B?lose(){(z1 <= 0)}<>" ];
-"72" -> "70" [ label="B?toolow(){(y < x1)}<x1, (z1 - 1)>" ];
-"71" [ label="71:  <> True" ];
+"37" [ label="37:  <> True" ];
+"37" -> "39" [ label="B!guess(x: int){True}<>" ];
+"39" [ label="39:  <> True" ];
+"39" -> "37" [ label="B?higher(){((n1 > x) && (t1 > 1))}<>" ];
+"39" -> "38" [ label="B?win(){(n1 = x)}<>" ];
+"39" -> "38" [ label="B?lose(){((n1 < x || n1 > x) && (t1 = 1))}<>" ];
+"39" -> "37" [ label="B?lower(){((n1 < x) && (t1 > 1))}<>" ];
+"38" [ label="38:  <> True" ];
 }
+

@@ -1,0 +1,15 @@
+
+digraph G {
+compound = true;
+"6" [ label="6:  <> True" ];
+"6" -> "8" [ label="B!start(n: int){((0 <= n) && (n < 100))}<>" ];
+"9" [ label="9:  <> True" ];
+"9" -> "9" [ label="B?higher(){True}<>" ];
+"9" -> "7" [ label="B?lose(){True}<>" ];
+"9" -> "7" [ label="B?win(){True}<>" ];
+"9" -> "9" [ label="B?lower(){True}<>" ];
+"8" [ label="8:  <> True" ];
+"8" -> "9" [ label="B!limit(t: int){(t > 0)}<>" ];
+"7" [ label="7:  <> True" ];
+}
+

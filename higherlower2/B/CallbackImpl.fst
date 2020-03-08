@@ -15,35 +15,34 @@ let empty1 = fun _ -> ()
 let empty2 = fun _ _ -> ()
 
 let callbacks : callbacksB = {
-  (*state55Onreceivenum : (st: state55) -> (x: int) -> ML (unit);*)
-  state55Onreceivenum = empty2;
+  (*state24Onreceivestart : (st: state24) -> (n: int{((0) <= (n)) && ((n) < (100))}) -> ML (unit);*)
+  state24Onreceivestart = empty2;
 
-  (*state57Onreceivelimit : (st: state57) -> (z: int) -> ML (unit);*)
-  state57Onreceivelimit = empty2;
+  (*state26Onreceivelimit : (st: state26) -> (t: int{((t) > (0))}) -> ML (unit);*)
+  state26Onreceivelimit = empty2;
 
-  (*state58Onreceiveguess : (st: state58) -> (y: int) -> ML (unit);*)
-  state58Onreceiveguess = empty2;
+  (*state27Onreceiveguess : (st: state27) -> (x: int) -> ML (unit);*)
+  state27Onreceiveguess = empty2;
 
-  (*state59Onsend : (st: state59) -> ML (state59Choice st);*)
-  state59Onsend = (fun st ->
-    let x1 = (Mkstate59?.x1 st) in
-    let y = (Mkstate59?.y st) in
-    if y > x1 then (Choice59toohigh ())
-    else if y = x1 then
-      let z1 = (Mkstate59?.z1 st) in
-      (if z1 > 0 then Choice59win () else Choice59lose ())
-    else (Choice59toolow ())
+  (*state28Onsend : (st: state28) -> ML (state28Choice st);*)
+  state28Onsend = (fun st ->
+    let n1 = (Mkstate28?.n1 st) in
+    let x = (Mkstate28?.x st) in
+    if x = n1 then Choice28win ()
+    else if (Mkstate28?.t1 st) = 1 then Choice28lose ()
+    else if n1 > x then Choice28higher ()
+    else Choice28lower ()
   );
 
-  (*state60Onsendconthigh : (st: state60) -> ML (unit);*)
-  state60Onsendconthigh = empty1;
+  (*state29Onsendhigher : (st: state29) -> ML (unit);*)
+  state29Onsendhigher = empty1;
 
-  (*state61Onsendlose : (st: state61) -> ML (unit);*)
-  state61Onsendlose = empty1;
+  (*state30Onsendlose : (st: state30) -> ML (unit);*)
+  state30Onsendlose = empty1;
 
-  (*state62Onsendwin : (st: state62) -> ML (unit);*)
-  state62Onsendwin = empty1;
+  (*state31Onsendwin : (st: state31) -> ML (unit);*)
+  state31Onsendwin = empty1;
 
-  (*state63Onsendcontlow : (st: state63) -> ML (unit);*)
-  state63Onsendcontlow = empty1;
+  (*state32Onsendlower : (st: state32) -> ML (unit);*)
+  state32Onsendlower = empty1;
 }
