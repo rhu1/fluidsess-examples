@@ -38,8 +38,7 @@ let callbacks : callbacksC = {
   (*state39Onreceivehigher : (st: state39) -> ML (unit);*)
   state39Onreceivehigher = (fun st -> 
     FStar.IO.print_string "Go higher\n";
-    let x = (Mkstate39?.x st) in
-    lower := x
+    lower :=(Mkstate39?.x st)
   );
 
   (*state39Onreceivelower : (st: state39) -> ML (unit);*)

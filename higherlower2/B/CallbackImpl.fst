@@ -29,8 +29,9 @@ let callbacks : callbacksB = {
     let n1 = (Mkstate28?.n1 st) in
     let x = (Mkstate28?.x st) in
     if x = n1 then Choice28win ()
-    else if (Mkstate28?.t1 st) = 1 then Choice28lose ()
+    else if (Mkstate28?.t1 st) = 1 then Choice28lose ()  (*comment for demo*)
     else if n1 > x then Choice28higher ()
+    (*else if n1 > x then Choice28lower ()*) (*demo*)
     else Choice28lower ()
   );
 
