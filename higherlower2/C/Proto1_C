@@ -2,11 +2,11 @@
 digraph G {
 compound = true;
 "37" [ label="37:  <> True" ];
-"37" -> "39" [ label="B!guess(x: int){True}<>" ];
+"37" -> "39" [ label="B!guess(x: int){((0 <= x) && (x < 100))}<>" ];
 "39" [ label="39:  <> True" ];
 "39" -> "37" [ label="B?higher(){((n1 > x) && (t1 > 1))}<>" ];
 "39" -> "38" [ label="B?win(){(n1 = x)}<>" ];
-"39" -> "38" [ label="B?lose(){((n1 < x || n1 > x) && (t1 = 1))}<>" ];
+"39" -> "38" [ label="B?lose(){(((n1 < x) || (n1 > x)) && (t1 = 1))}<>" ];
 "39" -> "37" [ label="B?lower(){((n1 < x) && (t1 > 1))}<>" ];
 "38" [ label="38:  <> True" ];
 }

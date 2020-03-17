@@ -9,11 +9,11 @@ let print_int (i:int) =
   let i = string_of_int i in
   FStar.IO.print_string i
 
-let upper = alloc 100
-let lower = alloc 0
+let upper:(ref (x:int{0 <= x && x < 100})) = alloc 99
+let lower:(ref (x:int{0 <= x && x < 100})) = alloc 0
 
 let callbacks : callbacksC = {
-  (*state37Onsendguess : (st: state37) -> ML (int);*)
+  (*state37Onsendguess : (st: state37) -> ML (x:int{((0) <= (x)) && ((x) < (100))});*)
   state37Onsendguess = (fun _ ->
     let y = (!upper + !lower) / 2 in
     FStar.IO.print_string "C: Guessing ";

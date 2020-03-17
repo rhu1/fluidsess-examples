@@ -1,24 +1,25 @@
 
 digraph G {
 compound = true;
+"22" [ label="22:  <> True" ];
+"22" -> "24" [ label="A?start(n: int){((0 <= n) && (n < 100))}<>" ];
+"25" [ label="25:  <n1:=n, t1:=t> (t1 > 0)" ];
+"25" -> "26" [ label="C?guess(x: int){((0 <= x) && (x < 100))}<>" ];
 "24" [ label="24:  <> True" ];
-"24" -> "26" [ label="A?start(n: int){((0 <= n) && (n < 100))}<>" ];
-"27" [ label="27:  <n1:=n, t1:=t> (t1 > 0)" ];
-"27" -> "28" [ label="C?guess(x: int){True}<>" ];
-"25" [ label="25:  <> True" ];
+"24" -> "25" [ label="A?limit(t: int){(t > 0)}<n, t>" ];
+"23" [ label="23:  <> True" ];
 "29" [ label="29:  <> True" ];
-"29" -> "27" [ label="A!higher(){True}<n1, (t1 - 1)>" ];
+"29" -> "23" [ label="A!win(){True}<>" ];
 "28" [ label="28:  <> True" ];
-"28" -> "29" [ label="C!higher(){((n1 > x) && (t1 > 1))}<>" ];
-"28" -> "30" [ label="C!win(){(n1 = x)}<>" ];
-"28" -> "31" [ label="C!lose(){((n1 < x || n1 > x) && (t1 = 1))}<>" ];
-"28" -> "32" [ label="C!lower(){((n1 < x) && (t1 > 1))}<>" ];
+"28" -> "23" [ label="A!lose(){True}<>" ];
+"27" [ label="27:  <> True" ];
+"27" -> "25" [ label="A!higher(){True}<n1, (t1 - 1)>" ];
 "26" [ label="26:  <> True" ];
-"26" -> "27" [ label="A?limit(t: int){(t > 0)}<n, t>" ];
-"32" [ label="32:  <> True" ];
-"32" -> "27" [ label="A!lower(){True}<n1, (t1 - 1)>" ];
-"31" [ label="31:  <> True" ];
-"31" -> "25" [ label="A!win(){True}<>" ];
+"26" -> "27" [ label="C!higher(){((n1 > x) && (t1 > 1))}<>" ];
+"26" -> "28" [ label="C!win(){(n1 = x)}<>" ];
+"26" -> "29" [ label="C!lose(){(((n1 < x) || (n1 > x)) && (t1 = 1))}<>" ];
+"26" -> "30" [ label="C!lower(){((n1 < x) && (t1 > 1))}<>" ];
 "30" [ label="30:  <> True" ];
-"30" -> "25" [ label="A!lose(){True}<>" ];
+"30" -> "25" [ label="A!lower(){True}<n1, (t1 - 1)>" ];
 }
+
