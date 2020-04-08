@@ -1,4 +1,4 @@
-module CallbackImpl
+module CallbackImplAlt
 
 open GeneratedProto1C
 open FStar.Mul
@@ -9,13 +9,13 @@ let print_int (i:int) =
   let i = string_of_int i in
   FStar.IO.print_string i
 
-let upper:(ref (x:int{0 <= x && x < 100})) = alloc 99
-let lower:(ref (x:int{0 <= x && x < 100})) = alloc 0
+let next : (ref (x:int{0 <= x && x < 100})) = alloc 50
 
 let callbacks : callbacksC = {
   (*state37Onsendguess : (st: state37) -> ML (x:int{((0) <= (x)) && ((x) < (100))});*)
-  state37OnsendGuess = (fun _ ->
-    let y = (!upper + !lower) / 2 in
+  state37OnsendGuess = (fun st ->
+    (*let y = (Mkstate37?.x st) in  (*message from prev it not recorded*)*)
+    let y = !next in
     FStar.IO.print_string "C: Guessing ";
     print_int y;
     FStar.IO.print_string "\n";
@@ -38,14 +38,13 @@ let callbacks : callbacksC = {
   (*state39Onreceivehigher : (st: state39) -> ML (unit);*)
   state39OnreceiveHigher = (fun st _ -> 
     FStar.IO.print_string "Go higher\n";
-    lower :=(Mkstate39?.x st)
+    next := (Mkstate39?.x st) + 1   (* (exists n . 0 <= n < 100 /\ n > x)   =>   x < 99*)
   );
 
   (*state39Onreceivelower : (st: state39) -> ML (unit);*)
   state39OnreceiveLower = (fun st _ -> 
     FStar.IO.print_string "Go lower\n";
-    let x = (Mkstate39?.x st) in
-    upper := x
+    next := (Mkstate39?.x st) - 1
   );
 }
 

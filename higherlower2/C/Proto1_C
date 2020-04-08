@@ -2,12 +2,12 @@
 digraph G {
 compound = true;
 "37" [ label="37:  <> True" ];
-"37" -> "39" [ label="B!guess(x: int){((0 <= x) && (x < 100))}<>" ];
+"37" -> "39" [ label="B!guess[n0: int, t0: int, n: int, t: int](x: int){((0 <= x) && (x < 100)
+&& (0 <= n0) && (n0 < 100) && (0 < t0) && (0 <= n) && (n < 100) && (0 < t))}<>" ];
 "39" [ label="39:  <> True" ];
-"39" -> "37" [ label="B?higher(){((n1 > x) && (t1 > 1))}<>" ];
-"39" -> "38" [ label="B?win(){(n1 = x)}<>" ];
-"39" -> "38" [ label="B?lose(){(((n1 < x) || (n1 > x)) && (t1 = 1))}<>" ];
-"39" -> "37" [ label="B?lower(){((n1 < x) && (t1 > 1))}<>" ];
+"39" -> "37" [ label="B?higher(){((n > x) && (t > 1))}<>" ];
+"39" -> "38" [ label="B?win(){(n = x)}<>" ];
+"39" -> "38" [ label="B?lose(){(((n < x) || (n > x)) && (t = 1))}<>" ];
+"39" -> "37" [ label="B?lower(){((n < x) && (t > 1))}<>" ];
 "38" [ label="38:  <> True" ];
 }
-
