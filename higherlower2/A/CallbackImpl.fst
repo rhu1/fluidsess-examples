@@ -5,7 +5,7 @@ open FStar.Mul
 open FStar.All
 
 val random : unit -> ML int
-let random () = Random.int (99l) |> FStar.Int32.v
+let random () = Random.int (99l) |> FStar.Int32.v  (* 0..99 inclusive *)
 
 let print_int (i:int) =
   let i = string_of_int i in

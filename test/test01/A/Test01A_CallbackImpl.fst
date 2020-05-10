@@ -1,11 +1,11 @@
-module CallbackImpl
+module Test01A_CallbackImpl
 
 open GeneratedProto1A
 open FStar.Mul
 open FStar.All
 
 (*val random : unit -> ML int
-let random () = Random.int (100l) |> FStar.Int32.v*)
+let random () = Random.int (100l) |> FStar.Int32.v*)  (* 0..100 inclusive *)
 
 let print_int (i:int) =
   let i = string_of_int i in

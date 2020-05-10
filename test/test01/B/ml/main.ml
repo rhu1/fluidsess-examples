@@ -1,1 +1,1 @@
-let () = B.run_once ()
+let () = Test01B.run_once ()

@@ -4,10 +4,10 @@ $ make main.ocaml.exe
 *)
 
 
-module B
+module AdderS
 
-open CallbackImpl
-open GeneratedProto1B
+open AdderS_CallbackImpl
+open GeneratedAdderS
 open Payload
 open Network
 
@@ -16,7 +16,7 @@ open FStar.Tcp
 let ip_addr_B = "127.0.0.1"
 let port_A = 4000
 
-let mk_comms stream : communications =
+let mk_comms stream : connection =
     { send_int = (fun _role p ->
         let p = payload_of_int p in
         send_payload stream p);

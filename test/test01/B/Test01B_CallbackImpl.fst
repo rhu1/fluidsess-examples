@@ -1,4 +1,4 @@
-module CallbackImpl
+module Test01B_CallbackImpl
 
 open GeneratedProto1B
 open FStar.Mul
@@ -12,8 +12,8 @@ let print_int (i:int) =
   FStar.IO.print_string i
 
 let callbacks : callbacksB = {
-  (*state11Onreceive1 : (st: state11) -> ML (unit);*)
-  state11Onreceive1 = (fun _ ->
+  (*state11Onreceive1 : (st: state11) -> (_dummy: unit) -> ML (unit);*)
+  state11Onreceive1 = (fun _ _ ->
     FStar.IO.print_string "B: Received 1\n");
 
 }

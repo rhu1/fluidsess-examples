@@ -1,4 +1,4 @@
-//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 HigherLower.scr
+//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 -batch -V HigherLower.scr
 //$ ROLES="A B C" FILE=HigherLower.scr PROTOCOL=Mergeable ./gen-fsm.sh
 // -- manually edit Mergeable_C to have @"<x1:=0>", not x1
 //$ ROLES="A B C" FILE=HigherLower.scr PROTOCOL=Mergeable ./gen.sh

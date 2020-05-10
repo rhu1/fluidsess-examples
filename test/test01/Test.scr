@@ -1,4 +1,8 @@
-//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 Test.scr
+//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 -batch -V Test.scr
+//$ ROLES="A B" FILE=Test.scr PROTOCOL=Proto1 ./gen-fsm.sh
+//$ ROLES="A B" FILE=Test.scr PROTOCOL=Proto1 ./gen.sh
+//
+//$ sessionstar Test.scr Proto1 A
 
 module Test;
 
