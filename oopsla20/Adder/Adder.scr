@@ -3,7 +3,7 @@
 module Adder;
 
 type <fstar> "int" from "..." as int;
-//type <fstar> "string" from "..." as String;
+//type <fstar> "string" from "..." as string;
 
 global protocol Adder(role C, role S)
 {

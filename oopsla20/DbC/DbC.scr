@@ -2,8 +2,8 @@
 
 module DbC;
 
-type <fstar> "..." from "..." as int;
-//type <fstar> "..." from "..." as String;
+type <fstar> "int" from "..." as int;
+//type <fstar> "string" from "..." as string;
 
 // CHECKME: faithful to DbC, but assertions don't make sense? Seller hags as long as Buyer keeps raising; but accepts if Buyer just offers min
 //global protocol DbC(role Buyer, role Seller, role Bank) @'<pvo:Seller=100>'  //<pvo=:100>

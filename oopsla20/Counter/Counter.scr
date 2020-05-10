@@ -2,8 +2,8 @@
 
 module Counter;
 
-type <fstar> "..." from "..." as int;
-//type <fstar> "..." from "..." as String;
+type <fstar> "int" from "..." as int;
+//type <fstar> "string" from "..." as string;
 
 //global protocol Count(role A, role B) @"A[cnt:int{cnt>=0}]"
 global protocol Count(role A, role B) @'<c:A=0> c>=0'

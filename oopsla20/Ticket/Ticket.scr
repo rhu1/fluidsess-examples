@@ -3,7 +3,7 @@
 module Ticket;
 
 type <fstar> "int" from "..." as int;
-//type <fstar> "string from "..." as String;
+//type <fstar> "string" from "..." as string;
 
 // CHECKME: termination?
 //global protocol Ticket(role S, role C) @"<creditC:C=1000, creditS:S=0, count:S=0>" {
