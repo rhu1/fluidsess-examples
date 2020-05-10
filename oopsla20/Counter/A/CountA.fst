@@ -1,13 +1,13 @@
 (*
-$ make
+$ rm .depend; make
 $ make main.ocaml.exe
 *)
 
 
-module Test01A
+module CountA
 
-open Test01A_CallbackImpl
-open GeneratedProto1A
+open CountA_CallbackImpl
+open GeneratedCountA
 open Payload
 open Network
 

@@ -1,3 +1,5 @@
+//$ sessionstar Adder.scr Adder C
+
 module Adder;
 
 type <fstar> "..." from "..." as int;
