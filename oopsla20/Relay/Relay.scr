@@ -7,9 +7,10 @@ type <fstar> "int" from "..." as int;
 
 global protocol Relay(role A, role B, role C) {
   Hello(x:int) from A to B; @"x > 0"
-  Relay(y:int) from B to C; @"x = y"
-  Relay(z:int) from C to A; @"z = x"
 
-  //Relay(y:int) from B to C; @"y > x"
-  //Relay(z:int) from C to A; @"z > x"  // z > y => z > x -- CHECKME: max int?
+  //Relay(y:int) from B to C; @"x = y"
+  //Relay(z:int) from C to A; @"z = x"
+
+  Relay(y:int) from B to C; @"y > x"
+  Relay(z:int) from C to A; @"z > x"  // z > y => z > x -- CHECKME: max int? dynamic?
 }

@@ -16,6 +16,9 @@ let callbacks : callbacksC = {
   (*state23OnreceiveRelay : (st: state23) -> (y: int) -> ML (unit);*)
   state23OnreceiveRelay = (fun _ _ -> ());
 
-  (*state25OnsendRelay : (st: state25) -> ML (z:int{((z) = reveal ((Mkstate25?.x st)))});*)
-  state25OnsendRelay = (fun st -> (Mkstate25?.y st))  (* y=x => z=x *)
+  (*(*state25OnsendRelay : (st: state25) -> ML (z:int{((z) = reveal ((Mkstate25?.x st)))});*)
+  state25OnsendRelay = (fun st -> (Mkstate25?.y st))  (* y=x => z=x *)*)
+
+  (*state25OnsendRelay : (st: state25) -> ML (z:int{((z) > reveal ((Mkstate25?.x st)))});*)
+  state25OnsendRelay = (fun st -> (Mkstate25?.y st)+1)  (* y>x => z>x -- CHECKME: int max?*)
 }

@@ -16,6 +16,9 @@ let callbacks : callbacksB = {
   (*state14OnreceiveHello : (st: state14) -> (x: int{((x) > (0))}) -> ML (unit);*)
   state14OnreceiveHello = (fun _ _ -> ());
 
-  (*state16OnsendRelay : (st: state16) -> ML (y:int{((Mkstate16?.x st) = (y))});*)
-  state16OnsendRelay = (fun st -> (Mkstate16?.x st))
+  (*(*state16OnsendRelay : (st: state16) -> ML (y:int{((Mkstate16?.x st) = (y))});*)
+  state16OnsendRelay = (fun st -> (Mkstate16?.x st))*)
+
+  (*state16OnsendRelay : (st: state16) -> ML (y:int{((y) > (Mkstate16?.x st))});*)
+  state16OnsendRelay = (fun st -> (Mkstate16?.x st)+1)  (*CHECKME: int max?*)
 }
