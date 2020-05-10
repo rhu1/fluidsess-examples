@@ -1,5 +1,6 @@
 gen.sh
 gen-fsm.sh
+*.fsm
 **/Generated*.fst
 **/_build
 **/_output
