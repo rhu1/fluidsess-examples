@@ -16,7 +16,7 @@ let callbacks : callbacksA = {
   (*state41OnreceiveCredential : (st: state41) -> (userid: int) -> ML (unit);*)
   state41OnreceiveCredential = (fun _ _ -> ());
 
-  (*state43OnreceivePw : (st: state43) -> (password: string) -> ML (unit);*)
+  (*state43OnreceivePw : (st: state43) -> (password: string) -> ML (unit);*)  (*FIXME: string in gen api*)
   state43OnreceivePw = (fun _ _ -> ());
 
   (*state44OnreceiveRe : (st: state44) -> (redirresp: string{(reveal ((Mkstate44?.redir st)) = (redirresp))}) -> ML (unit);*)

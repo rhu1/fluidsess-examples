@@ -1,3 +1,4 @@
+//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 -batch Counter.scr
 //$ sessionstar Counter.scr Count A
 
 module Counter;

@@ -1,10 +1,12 @@
+//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 -batch OAuth.scr
 //$ sessionstar OAuth.scr OAuth U
 // ...rename String -> string
 
 module OAuth;
 
 type <fstar> "int" from "..." as int;
-type <fstar> "string" from "..." as string;  // TODO: use "string" in codegen (or FSM output)
+type <fstar> "string" from "..." as //string;  // TODO: use "string" in codegen (or FSM output)
+  String;
 
 global protocol OAuth(role U, role S, role A) {
   login(redir: String) from S to U;  // Message name unclear?

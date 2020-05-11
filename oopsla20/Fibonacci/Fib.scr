@@ -1,3 +1,4 @@
+//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 -batch Fib.scr
 //$ sessionstar Fib.scr Fib A
 
 module Fib;

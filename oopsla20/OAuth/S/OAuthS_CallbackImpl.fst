@@ -24,7 +24,7 @@ let callbacks : callbacksS = {
   (*state26OnsendLogin : (st: state26) -> ML (string);*)
   state26OnsendLogin = (fun st -> "doubledoubledouble.redir.com")
 
-  (*state28OnreceiveAuthed : (st: state28) -> (tokenresp: string) -> ML (unit);*)
+  (*state28OnreceiveAuthed : (st: state28) -> (tokenresp: string) -> ML (unit);*)  (*FIXME: string in gen api*)
   state28OnreceiveAuthed = (fun _ tokenresp ->
     FStar.IO.print_string "S: Authed: ";
     print_int tokenresp;

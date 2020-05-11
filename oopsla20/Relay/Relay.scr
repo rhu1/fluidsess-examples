@@ -1,3 +1,4 @@
+//$ ~/scribbler/scribble/scribblec-assrt.sh -assrt -fair -z3 -batch Relay.scr
 //$ sessionstar Relay.scr Relay A
 
 module Relay;
