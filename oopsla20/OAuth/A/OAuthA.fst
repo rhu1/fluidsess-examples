@@ -4,10 +4,10 @@ $ make main.ocaml.exe
 *)
 
 
-module DbCBank
+module OAuthA
 
-open DbCBank_CallbackImpl
-open GeneratedDbCBank
+open OAuthA_CallbackImpl
+open GeneratedOAuthA
 open Payload
 open Network
 

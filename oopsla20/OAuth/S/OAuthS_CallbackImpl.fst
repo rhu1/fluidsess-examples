@@ -1,6 +1,6 @@
-module DbCSeller_CallbackImpl
+module OAuthS_CallbackImpl
 
-open GeneratedDbCSeller
+open GeneratedOAuthS
 open FStar.Mul
 open FStar.All
 
