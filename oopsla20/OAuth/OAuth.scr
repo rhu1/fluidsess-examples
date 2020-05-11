@@ -24,3 +24,23 @@ global protocol OAuth(role U, role S, role A) {
     not_authed() from U to S;
   }
 }
+//*/
+
+/*
+global protocol OAuth(role U, role S, role A) {
+  login(redir: int) from S to U;  // Message name unclear?
+  //credential(userid: int, password: int, redirresp : int) from U to A; @"redir = redirresp"
+  credential(userid: int) from U to A;
+  pw(password: int) from U to A;
+  re(redirresp : int) from U to A; @"redir = redirresp"
+  choice at A {
+    authed(token: int) from A to U;
+    authed(tokenresp: int) from U to S; @"token = tokenresp"
+    request_resource_token(authtoken: int) from S to A; @"authtoken = tokenresp"
+    resource_token(restoken: int) from A to S;
+  } or {
+    not_authed() from A to U;
+    not_authed() from U to S;
+  }
+}
+//*/

@@ -14,18 +14,21 @@ let print_int (i:int) =
 let callbacks : callbacksC = {
 
   (*state70OnsendLogin : (st: state70) -> ML (string);*)
-  state70OnsendLogin = (fun _ -> "login");
+  //state70OnsendLogin = (fun _ -> "login");
+  state70OnsendLogin = (fun _ -> 1234);
 
   (*state72OnsendPassword : (st: state72) -> ML (string);*)
-  state72OnsendPassword = (fun _ -> "password");
+  //state72OnsendPassword = (fun _ -> "password");
+  state72OnsendPassword = (fun _ -> 5678);
 
   (*state73OnreceiveLogin_ok : (st: state73) -> (_dummy: unit) -> ML (unit);*)
-  state73OnreceiveLogin_ok = (fun _ _ -> ());
+  state73OnreceiveLogin_ok = (fun _ _ -> FStar.IO.print_string "C: Login OK.");
 
   (*state73OnreceiveLogin_fail : (st: state73) -> (error: string) -> ML (unit);*)
   state73OnreceiveLogin_fail = (fun _ error ->
-    FStar.IO.print_string "Login failed: ";
-    FStar.IO.print_string error;
+    FStar.IO.print_string "C: Login failed: ";
+    //FStar.IO.print_string error;
+    print_int error;
     FStar.IO.print_string "\n"
   );
 
@@ -39,22 +42,28 @@ let callbacks : callbacksC = {
   state76Onsend = (fun st ->
     let a = (Mkstate76?.allowance st) in
     if a >= 10 then
-      Choice76Pay 10  (* 10 <= allowance *)
+      (FStar.IO.print_string "C: Pay: 10\n";
+      Choice76Pay 10)  (* 10 <= allowance *)
       (*Choice76Pay 11*)
     else
       Choice76Quit ()
   );
 
   (*state77OnsendPayee : (st: state77) -> ML (string);*)
-  state77OnsendPayee = (fun _ -> "foo");
+  //state77OnsendPayee = (fun _ -> "foo");
+  state77OnsendPayee = (fun _ -> 999);
 
   (*state78OnsendPay_auth : (st: state78) -> ML (unit);*)
   state78OnsendPay_auth = (fun _ -> ());
 
-  (*state79OnreceiveAccount : (st: state79) -> (newbalance: int{((newbalance) >= (0))}) -> ML (unit);*)
-  state79OnreceiveAccount = (fun _ _ -> ());
+  (*state79OnreceiveAccount : (st: state79) -> (newbalance: int{((newbalance) = (reveal ((Mkstate79?.balance1 st)) - (Mkstate79?.amount st)))}) -> ML (unit);*)
+  state79OnreceiveAccount = (fun _ newbalance -> 
+    FStar.IO.print_string "C: newbalance: ";
+    print_int newbalance;
+    FStar.IO.print_string "\n"
+  );
 
-  (*state80OnreceiveAccount : (st: state80) -> (newoverdraft: int{((newoverdraft) >= (0))}) -> ML (unit);*)
+  (*state80OnreceiveAccount : (st: state80) -> (newoverdraft: int{((newoverdraft) = reveal ((Mkstate80?.overdraft1 st)))}) -> ML (unit);*)
   state80OnreceiveAccount = (fun _ _ -> ());
 
   (*state81OnsendQuit : (st: state81) -> ML (unit);*)

@@ -24,7 +24,8 @@ let callbacks : callbacksA = {
     if true then (* TODO *)
       Choice95Login_ok ()
     else
-      Choice95Login_fail "Bad login."
+      //Choice95Login_fail "Bad login."
+      Choice95Login_fail (-1)
   );
 
   (*state96OnsendLogin_ok : (st: state96) -> ML (unit);*)
