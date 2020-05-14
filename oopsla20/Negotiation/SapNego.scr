@@ -8,7 +8,7 @@ type <fstar> "int" from "" as int;
 // C = Consumer, P = Producer
 global protocol Negotiate(role C, role P)
 {
-  propose(initialPrice: int) from C to P;  // SAP was not capitalistic
+  propose(initialPrice: int) from C to P;
   do NegoAux(C, P);  @'<initialPrice>'
 }
 
@@ -22,7 +22,6 @@ aux global protocol NegoAux(role C, role P) @'<prop:=0>' {
   or
   {
     counter(counterOfferPrice: int) from P to C;
-      //@"!(counterOfferPrice = initialPrice)"
       @"counterOfferPrice < prop || counterOfferPrice > prop"
     choice at C
     {
@@ -32,7 +31,6 @@ aux global protocol NegoAux(role C, role P) @'<prop:=0>' {
     }
     or
     {
-      //retry() from C to P;
       counter(countercounter: int) from C to P;
         @"(countercounter < counterOfferPrice || countercounter > counterOfferPrice)
             && (countercounter < prop || countercounter > prop)"

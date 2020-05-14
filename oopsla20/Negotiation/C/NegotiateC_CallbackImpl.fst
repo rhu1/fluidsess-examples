@@ -40,7 +40,7 @@ let callbacks : callbacksC = {
   state38Onsend = (fun st ->
     let prop = (Mkstate38?.prop st) in
     let counter = (Mkstate38?.counterOfferPrice st) in
-    if counter > 80 || counter = prop - 1 then
+    if counter > 80 || counter = prop-1 then
       Choice38Accpt (counter)
     else
       Choice38Counter (prop-1)  (*n.b. countercounter != prop && countercounter != counter*)

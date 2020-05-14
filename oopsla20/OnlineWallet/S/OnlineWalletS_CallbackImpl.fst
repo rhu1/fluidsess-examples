@@ -37,7 +37,7 @@ let callbacks : callbacksS = {
   (*state51OnreceiveQuit : (st: state51) -> (_dummy: unit) -> ML (unit);*)
   state51OnreceiveQuit = (fun _ _ -> ());
 
-  (*state52OnreceivePayee : (st: state52) -> (payee: string) -> ML (unit);*)  (*FIXME: string in gen api*)
+  (*state52OnreceivePayee : (st: state52) -> (payee: string) -> ML (unit);*)
   state52OnreceivePayee = (fun _ _ -> ());
 
   (*state53OnsendAccount : (st: state53) -> ML (newbalance:int{((newbalance) = ((Mkstate53?.balance1 st) - (Mkstate53?.amount st)))});*)
