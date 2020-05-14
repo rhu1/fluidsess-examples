@@ -18,7 +18,7 @@ global protocol OnlineWallet(role S, role C, role A) {
     //account(balance: int, overdraft: int) from S to C; @"balance>=0 && overdraft>=0"
     account(balance: int) from S to C; @"balance>=0"
     ov(overdraft: int) from S to C; @"overdraft>=0"
-    ////do Authenticated(S, C, A); @"<balance+overdraft, balance>"  // FIXME: arity check
+    ////do Authenticated(S, C, A); @"<balance+overdraft, balance>"  // FIXME: scrib arity check
     //do Authenticated(S, C, A); @"<balance+overdraft>"
     do Authenticated(S, C, A); @"<balance+overdraft, overdraft, balance>"
   } or {
