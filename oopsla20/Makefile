@@ -3,7 +3,8 @@
 build: build-Calculator build-Fibonacci build-HigherLower build-HTTP build-Negotiation build-OnlineWallet build-SH build-Ticket build-TravelAgency build-TwoBuyer
 
 .PHONY: run
-run: run-Calculator pause run-Fibonacci pause run-HigherLower pause run-Negotiation pause run-OnlineWallet pause run-Ticket pause run-TravelAgency pause run-TwoBuyer
+run: run-Calculator pause run-HigherLower pause run-Negotiation pause run-OnlineWallet pause run-TravelAgency pause run-TwoBuyer
+#pause run-Fibonacci pause run-Ticket  # Because non-terminating
 
 .PHONY: pause
 		sleep 1s
