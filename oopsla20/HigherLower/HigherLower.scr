@@ -3,8 +3,8 @@
 
 module HigherLower;
 
-type <fstar> "int" from "..." as int;
-//type <fstar> "string" from "..." as string;
+type <fstar> "int" from "" as int;
+//type <fstar> "string" from "" as string;
 
 global protocol HigherLower(role A, role B, role C) {
   start(n0:int) from A to B;  @'0<=n0 && n0<100'

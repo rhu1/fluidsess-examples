@@ -16,7 +16,7 @@ let next : ref (x:int{0 <= x && x < 100}) = alloc 50
 let callbacks : callbacksC = {
 
   (*state70OnsendGuess : (st: state70) -> ML (x:int{((0) <= (x)) && ((x) < (100))});*)
-  state70OnsendGuess = (fun _ -> 
+  state70OnsendGuess = (fun _ ->
     let next = !next in
     FStar.IO.print_string "C: Guessing: ";
     print_int next;
