@@ -3,11 +3,16 @@
 build: build-Calculator build-Fibonacci build-HigherLower build-HTTP build-Negotiation build-OnlineWallet build-SH build-Ticket build-TravelAgency build-TwoBuyer
 
 .PHONY: run
-run: run-Calculator pause run-HigherLower pause run-Negotiation pause run-OnlineWallet pause run-TravelAgency pause run-TwoBuyer
-#pause run-Fibonacci pause run-Ticket  # Because non-terminating
-
-.PHONY: pause
-		sleep 1s
+run: 
+	make run-Calculator 
+	#sleep 1s; make run-Fibonacci
+	sleep 1s; make run-HigherLower 
+	#sleep 1s; make run-HTTP
+	sleep 1s; make run-Negotiation
+	sleep 1s; make run-OnlineWallet
+	#sleep 1s; make run-Ticket
+	sleep 1s; make run-TravelAgency
+	sleep 1s; make run-TwoBuyer
 
 .PHONY: clean
 clean: clean-Calculator clean-Fibonacci clean-HigherLower clean-Negotiation clean-OnlineWallet clean-SH clean-Ticket clean-TravelAgency clean-TwoBuyer
