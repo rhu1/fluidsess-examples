@@ -14,7 +14,7 @@ global protocol OnlineWallet(role S, role C, role A) {
     login_ok() from A to S;
     account(balance: int) from S to C; @"balance>=0"
     ov(overdraft: int) from S to C; @"overdraft>=0"
-    do Authenticated(S, C, A); @"<balance+overdraft, overdraft, balance>"
+    do Authenticated(S, C, A); @"C[balance+overdraft] S[overdraft, balance]"
   } or {
     login_fail(error: int) from A to C;
     login_fail() from A to S;
@@ -22,15 +22,15 @@ global protocol OnlineWallet(role S, role C, role A) {
 }
 
 aux global protocol Authenticated(role S, role C, role A)
-      @"<allowance:C=0, overdraft1:S=0, balance1:S=0>
-          allowance>=0 && overdraft1>=0 && balance1=allowance-overdraft1)" {
+      @"C[allowance: int = 0] S[overdraft1: int = 0, balance1: int = 0]
+            allowance>=0 && overdraft1>=0 && balance1=allowance-overdraft1)" {
   choice at C {
     pay(amount: int) from C to S; @"amount<=allowance"  // N.B. amount first
     payee(payee: int) from C to S;
     pay_auth() from C to A;
     account(newbalance: int) from S to C; @"newbalance=balance1-amount"
     account(newoverdraft: int) from S to C; @"newoverdraft=overdraft1"
-    do Authenticated(S, C, A); @"<allowance-amount, overdraft1, newbalance>"
+    do Authenticated(S, C, A); @"C[allowance-amount] S[overdraft1, newbalance]"
   } or {
     quit() from C to S;
     quit() from C to A;

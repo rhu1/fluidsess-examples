@@ -8,13 +8,14 @@ type <fstar> "int" from "..." as int;
 
 // CHECKME: faithful to DbC, but assertions don't make sense? Seller hags as long as Buyer keeps raising; but accepts if Buyer just offers min
 //global protocol DbC(role Buyer, role Seller, role Bank) @'<pvo:Seller=100>'  //<pvo=:100>
-global protocol DbC(role Buyer, role Seller, role Bank) @'<pvo:Seller=100> pvo>=100'
+global protocol DbC(role Buyer, role Seller, role Bank)
+            @'Seller[pvo: int = 100] pvo>=100'
 {
   offer(vo:int) from Buyer to Seller; @'vo >= 100'
   choice at Seller {
     hag() from Seller to Buyer; @'vo > pvo'
     check() from Buyer to Bank;
-    do DbC(Buyer, Seller, Bank); @'<vo>'
+    do DbC(Buyer, Seller, Bank); @'Seller[vo]'
   } or {
     ok() from Seller to Buyer;
     payment(vp:int) from Buyer to Bank; @'vo = vp'
