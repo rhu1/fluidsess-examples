@@ -24,6 +24,8 @@ aux global protocol NegoAux(role C, role P)
   {
     counter(counterOfferPrice: int) from P to C;
       @"counterOfferPrice < propP || counterOfferPrice > propP"
+
+    // TODO: swap C/P roles via do
     choice at C
     {
       accpt(confirmedPrice2: int) from C to P;
