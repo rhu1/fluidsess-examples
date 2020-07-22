@@ -97,3 +97,45 @@ aux global protocol NegoAux(role C, role P) @'P[prop: int = 0]' {
 }
 //*/
 
+
+
+global protocol NegotiateOrig(role C, role P)
+{
+  propose(initialPrice: int) from C to P;
+  do NegoOrigAux(C, P);  @'[initialPrice]'
+}
+
+aux global protocol NegoOrigAux(role C, role P) @'[prop: int = 0]' {
+  choice at P
+  {
+    accpt(confirmedPrice1: int) from P to C;
+      @"prop = confirmedPrice1"
+    confirm() from C to P;
+  }
+  or
+  {
+    counter(counterOfferPrice: int) from P to C;
+      @"counterOfferPrice < prop || counterOfferPrice > prop"
+    choice at C
+    {
+      accpt(confirmedPrice2: int) from C to P;
+        @"counterOfferPrice = confirmedPrice2"
+      confirm() from P to C;
+    }
+    or
+    {
+      counter(countercounter: int) from C to P;
+        @"(countercounter < counterOfferPrice || countercounter > counterOfferPrice)
+            && (countercounter < prop || countercounter > prop)"
+      do NegoOrigAux(C, P);  @'[countercounter]'
+    }
+    or
+    {
+      reject() from C to P;
+    }
+  }
+  or
+  {
+    reject() from P to C;
+  }
+}
