@@ -24,7 +24,8 @@ let callbacks : callbacksP = {
 
   (*state51Onsend : (st: state51) -> ML (state51Choice st);*)
   state51Onsend = (fun st ->
-    let prop = (Mkstate51?.prop st) in
+    (*let prop = (Mkstate51?.prop st) in*)
+    let prop = (Mkstate51?.propP st) in
     let n = !next in
     if prop<90 || prop=n then
       Choice51Accpt (prop)

@@ -20,5 +20,6 @@ let callbacks : callbacksB = {
   state19OnreceiveNum2 = (fun _ _ -> ());
 
   (*state20OnsendNum3 : (st: state20) -> ML (z1:int{((z1) = ((Mkstate20?.x1 st) + (Mkstate20?.y1 st)))});*)
+  //state20OnsendNum3 = (fun st -> (Mkstate20?.x1 st) + (Mkstate20?.y1 st))
   state20OnsendNum3 = (fun st -> (Mkstate20?.x1 st) + (Mkstate20?.y1 st))
 }

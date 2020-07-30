@@ -38,7 +38,8 @@ let callbacks : callbacksC = {
 
   (*state38Onsend : (st: state38) -> ML (state38Choice st);*)
   state38Onsend = (fun st ->
-    let prop = (Mkstate38?.prop st) in
+    (*let prop = (Mkstate38?.prop st) in*)
+    let prop = (Mkstate38?.propC st) in
     let counter = (Mkstate38?.counterOfferPrice st) in
     if counter > 80 || counter = prop-1 then
       Choice38Accpt (counter)
