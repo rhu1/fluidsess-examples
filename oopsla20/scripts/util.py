@@ -43,7 +43,7 @@ def benchmark_command(
 def benchmark_fstar_file(filename: str, repetition: Optional[int] = None) -> float:
     filename = os.path.abspath(filename)
     directory = os.path.dirname(filename)
-    command = ["fstar.exe", filename, "--cache_off"]
+    command = ["fstar.exe", filename]
     return benchmark_command(command, directory, repetition=repetition)
 
 
