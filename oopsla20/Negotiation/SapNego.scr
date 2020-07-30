@@ -14,7 +14,7 @@ global protocol Negotiate(role C, role P)
 }
 
 aux global protocol NegoAux(role C, role P)
-            //@'[propP: int = 0]' {
+            //@'[prop: int = 0]' {
             @'P[propP: int = 0] C[propC: int = 0]' {
   choice at P
   {

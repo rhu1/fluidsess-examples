@@ -13,8 +13,11 @@ let print_int (i:int) =
 
 let callbacks : callbacksA = {
 
-  (*state6OnsendNum1 : (st: state6) -> ML (x1:int{((x1) = (Mkstate6?.x st))});*)
-  state6OnsendNum1 = (fun st -> (Mkstate6?.x st));
+    (*state6OnsendNum1 : (st: state6) -> ML (x1:int{((x1) = (Mkstate6?.x st))});*)
+    state6Onsend = (fun st ->
+        let x = (Mkstate6?.x st) in
+        if x < 1000 then Choice6Num1 x else Choice6Bye ()
+  );
 
   (*state8OnsendNum2 : (st: state8) -> ML (y1:int{((y1) = (Mkstate8?.y st))});*)
   state8OnsendNum2 = (fun st -> (Mkstate8?.y st));
